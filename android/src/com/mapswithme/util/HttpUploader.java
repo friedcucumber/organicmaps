@@ -4,6 +4,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -27,6 +28,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
 
+@Keep
 public final class HttpUploader extends AbstractHttpUploader
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.NETWORK);
@@ -238,6 +240,7 @@ public final class HttpUploader extends AbstractHttpUploader
     writer.flush();
   }
 
+  @Keep
   static class Result
   {
     private final int mHttpCode;

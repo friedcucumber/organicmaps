@@ -3,8 +3,9 @@ package com.mapswithme.maps.downloader;
 import android.os.AsyncTask;
 import android.util.Base64;
 
+import androidx.annotation.Keep;
+
 import com.mapswithme.util.Constants;
-import com.mapswithme.util.HttpClient;
 import com.mapswithme.util.StringUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.log.Logger;
@@ -21,7 +22,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") @Keep
 class ChunkTask extends AsyncTask<Void, byte[], Integer>
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.DOWNLOADER);

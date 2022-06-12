@@ -1,5 +1,6 @@
 package com.mapswithme.util;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.work.Constraints;
 import androidx.work.Data;
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
 
+@Keep
 public class HttpBackgroundUploader extends AbstractHttpUploader
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.NETWORK);

@@ -18,6 +18,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
@@ -96,8 +97,6 @@ import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.bottomsheet.MenuBottomSheetFragment;
 import com.mapswithme.util.bottomsheet.MenuBottomSheetItem;
-import com.mapswithme.util.log.Logger;
-import com.mapswithme.util.log.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -1118,7 +1117,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
   // Called from JNI.
-  @Override
+  @Override @Keep
   public void onPlacePageActivated(@NonNull PlacePageData data)
   {
     if (data instanceof MapObject)
@@ -1141,7 +1140,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   }
 
   // Called from JNI.
-  @Override
+  @Override @Keep
   public void onPlacePageDeactivated(boolean switchFullScreenMode)
   {
     if (switchFullScreenMode)

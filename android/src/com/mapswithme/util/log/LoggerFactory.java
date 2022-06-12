@@ -9,12 +9,15 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.mapswithme.maps.BuildConfig;
 import com.mapswithme.maps.MwmApplication;
 import com.mapswithme.maps.R;
 import com.mapswithme.util.Utils;
+
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
@@ -23,7 +26,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,7 +33,7 @@ import java.util.concurrent.Executors;
  * By default uses Android's system logger.
  * After an initFileLogging() call can use a custom file logging implementation.
  */
-@ThreadSafe
+@ThreadSafe @Keep
 public class LoggerFactory
 {
   public enum Type
@@ -246,7 +248,7 @@ public class LoggerFactory
   }
 
   // Called from JNI.
-  @SuppressWarnings("unused")
+  @SuppressWarnings("unused") @Keep
   private static void logCoreMessage(int level, String msg)
   {
     final Logger logger = INSTANCE.getLogger(Type.CORE);
