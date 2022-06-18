@@ -495,34 +495,27 @@ void TextureManager::GetTexturesToCleanup(std::vector<drape_ptr<HWTexture>> & te
   std::swap(textures, m_texturesToCleanup);
 }
 
-void TextureManager::GetSymbolRegion(std::string const & symbolName, SymbolRegion & region)
+bool TextureManager::GetSymbolRegionSafe(std::string const & symbolName, SymbolRegion & region)
 {
   CHECK(m_isInitialized, ());
   for (size_t i = 0; i < m_symbolTextures.size(); ++i)
   {
-    ASSERT(m_symbolTextures[i] != nullptr, ());
     ref_ptr<SymbolsTexture> symbolsTexture = make_ref(m_symbolTextures[i]);
+    ASSERT(symbolsTexture != nullptr, ());
     if (symbolsTexture->IsSymbolContained(symbolName))
     {
       GetRegionBase(symbolsTexture, region, SymbolsTexture::SymbolKey(symbolName));
       region.SetTextureIndex(static_cast<uint32_t>(i));
-      return;
+      return true;
     }
   }
-  LOG(LWARNING, ("Detected using of unknown symbol ", symbolName));
+  return false;
 }
 
-bool TextureManager::HasSymbolRegion(std::string const & symbolName) const
+void TextureManager::GetSymbolRegion(std::string const & symbolName, SymbolRegion & region)
 {
-  CHECK(m_isInitialized, ());
-  for (size_t i = 0; i < m_symbolTextures.size(); ++i)
-  {
-    ASSERT(m_symbolTextures[i] != nullptr, ());
-    ref_ptr<SymbolsTexture> symbolsTexture = make_ref(m_symbolTextures[i]);
-    if (symbolsTexture->IsSymbolContained(symbolName))
-      return true;
-  }
-  return false;
+  if (!GetSymbolRegionSafe(symbolName, region))
+    LOG(LWARNING, ("Detected using of unknown symbol ", symbolName));
 }
 
 void TextureManager::GetStippleRegion(PenPatternT const & pen, StippleRegion & region)

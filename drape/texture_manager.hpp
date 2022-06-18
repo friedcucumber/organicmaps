@@ -88,8 +88,8 @@ public:
   void OnSwitchMapStyle(ref_ptr<dp::GraphicsContext> context);
   void GetTexturesToCleanup(std::vector<drape_ptr<HWTexture>> & textures);
 
+  bool GetSymbolRegionSafe(std::string const & symbolName, SymbolRegion & region);
   void GetSymbolRegion(std::string const & symbolName, SymbolRegion & region);
-  bool HasSymbolRegion(std::string const & symbolName) const;
 
   void GetStippleRegion(PenPatternT const & pen, StippleRegion & region);
   void GetColorRegion(Color const & color, ColorRegion & region);
